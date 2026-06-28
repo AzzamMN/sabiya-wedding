@@ -18,10 +18,19 @@ export const metadata = {
   description: "Layanan jasa wedding decoration dan MUA (Make Up Artist) premium dengan harga terjangkau untuk pernikahan berkesan Anda.",
 };
 
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="id" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <FloatingWhatsApp />
+      </body>
     </html>
   );
 }
