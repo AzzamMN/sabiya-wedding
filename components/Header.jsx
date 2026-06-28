@@ -36,7 +36,7 @@ export default function Header() {
     <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : ''}`}>
       <div className="container header-container">
         <Link href="/" className="logo-link">
-          <Logo variant="light" className="header-logo" />
+          <Logo variant={isScrolled ? 'light' : 'dark'} height="45px" />
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''}`}>

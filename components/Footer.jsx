@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <Link href="/" className="logo-link">
-            <Logo variant="dark" className="footer-logo" />
+            <Logo variant="dark" height="55px" />
           </Link>
           <p className="footer-desc">
             Mewujudkan hari bahagia Anda dengan sentuhan dekorasi premium dan riasan makeup elegan.

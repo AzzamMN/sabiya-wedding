@@ -1,4 +1,4 @@
-export default function Logo({ variant = 'light', className = '' }) {
+export default function Logo({ variant = 'light', className = '', height = '45px' }) {
   // light variant: for light backgrounds (uses dark text)
   // dark variant: for dark backgrounds (uses white text)
   const textColor = variant === 'light' ? '#1c1d21' : '#ffffff';
@@ -8,8 +8,7 @@ export default function Logo({ variant = 'light', className = '' }) {
     <svg 
       className={className} 
       viewBox="10 5 150 45"
-      width="150"
-      height="45"
+      style={{ height, width: 'auto', display: 'block' }}
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
