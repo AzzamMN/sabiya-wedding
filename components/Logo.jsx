@@ -7,7 +7,7 @@ export default function Logo({ variant = 'light', className = '' }) {
   return (
     <svg 
       className={className} 
-      viewBox="0 0 200 60" 
+      viewBox="10 5 150 45" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       style={{ height: '100%', width: 'auto' }}
