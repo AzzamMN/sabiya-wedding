@@ -35,8 +35,7 @@ export default function Header() {
     <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : ''}`}>
       <div className="container header-container">
         <Link href="/" className="logo">
-          {/* Fallback before logo is ready */}
-          <span className="logo-text text-gold">Sabiya</span> Wedding
+          <img src="/logo.jpg" alt="Sabiya Wedding" className="logo-img" />
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''}`}>
@@ -84,9 +83,14 @@ export default function Header() {
         }
 
         .logo {
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
-          font-weight: 700;
+          display: flex;
+          align-items: center;
+        }
+
+        .logo-img {
+          height: 40px;
+          width: auto;
+          mix-blend-mode: multiply; /* Helps hide white background if needed */
         }
 
         .main-nav {
