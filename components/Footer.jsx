@@ -1,5 +1,5 @@
-'use client';
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Link href="/" className="logo">
-            <img src="/logo.jpg" alt="Sabiya Wedding" className="logo-img" />
+          <Link href="/" className="logo-link">
+            <Logo variant="dark" className="footer-logo" />
           </Link>
           <p className="footer-desc">
             Mewujudkan hari bahagia Anda dengan sentuhan dekorasi premium dan riasan makeup elegan.
@@ -62,19 +62,11 @@ export default function Footer() {
           margin-bottom: var(--space-8);
         }
 
-        .logo {
+        .logo-link {
           display: inline-flex;
           align-items: center;
           margin-bottom: var(--space-3);
-        }
-
-        .logo-img {
-          height: 50px;
-          width: auto;
-          /* Optional: For dark footer, we can apply a filter to invert or just let it stand out, 
-             but since it's a white logo image, we can just use mix-blend-mode: screen if inverted, 
-             or simply use CSS filter to make it look decent on dark background */
-          filter: brightness(0) invert(1) sepia(100%) saturate(300%) hue-rotate(10deg) drop-shadow(0 0 1px rgba(0,0,0,0.5));
+          height: 55px;
         }
 
         .footer-desc {

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import Logo from './Logo';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,8 +35,8 @@ export default function Header() {
   return (
     <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : ''}`}>
       <div className="container header-container">
-        <Link href="/" className="logo">
-          <img src="/logo.jpg" alt="Sabiya Wedding" className="logo-img" />
+        <Link href="/" className="logo-link">
+          <Logo variant="light" className="header-logo" />
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''}`}>
@@ -82,15 +83,10 @@ export default function Header() {
           align-items: center;
         }
 
-        .logo {
+        .logo-link {
           display: flex;
           align-items: center;
-        }
-
-        .logo-img {
-          height: 40px;
-          width: auto;
-          mix-blend-mode: multiply; /* Helps hide white background if needed */
+          height: 45px;
         }
 
         .main-nav {
