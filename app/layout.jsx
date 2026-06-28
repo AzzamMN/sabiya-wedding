@@ -21,15 +21,18 @@ export const metadata = {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <FloatingWhatsApp />
+        <SmoothScrolling>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <FloatingWhatsApp />
+        </SmoothScrolling>
       </body>
     </html>
   );

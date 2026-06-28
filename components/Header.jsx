@@ -1,10 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,19 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e, hash) => {
+    setIsMobileMenuOpen(false);
+    if (pathname === '/') {
+      e.preventDefault();
+      if (window.lenis) {
+        window.lenis.scrollTo(hash);
+      } else {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : ''}`}>
       <div className="container header-container">
@@ -24,11 +40,11 @@ export default function Header() {
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''}`}>
-          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Beranda</Link>
-          <Link href="/layanan" onClick={() => setIsMobileMenuOpen(false)}>Layanan & Harga</Link>
-          <Link href="/portfolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link>
-          <Link href="/tentang" onClick={() => setIsMobileMenuOpen(false)}>Tentang Kami</Link>
-          <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+          <Link href="/#beranda" onClick={(e) => handleNavClick(e, '#beranda')}>Beranda</Link>
+          <Link href="/#layanan" onClick={(e) => handleNavClick(e, '#layanan')}>Layanan & Harga</Link>
+          <Link href="/#portfolio" onClick={(e) => handleNavClick(e, '#portfolio')}>Portfolio</Link>
+          <Link href="/#tentang" onClick={(e) => handleNavClick(e, '#tentang')}>Tentang Kami</Link>
+          <Link href="/#blog" onClick={(e) => handleNavClick(e, '#blog')}>Blog</Link>
           <Link href="/cek-tanggal" className="btn btn-primary nav-btn" onClick={() => setIsMobileMenuOpen(false)}>
             Cek Tanggal
           </Link>

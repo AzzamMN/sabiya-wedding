@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import styles from './portfolio.module.css';
 
-export const metadata = {
-  title: 'Portfolio | Sabiya Wedding',
-  description: 'A glimpse into our beautiful wedding memories and curated collections.',
-};
-
 export default function PortfolioPage() {
   const portfolioItems = [
     {
@@ -59,7 +54,7 @@ export default function PortfolioPage() {
   ];
 
   return (
-    <main className={styles.portfolioSection}>
+    <section className={styles.portfolioSection}>
       <div className="container">
         <header className={`${styles.header} reveal`}>
           <h1 className="section-title text-gold">Our Portfolio</h1>
@@ -88,6 +83,6 @@ export default function PortfolioPage() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

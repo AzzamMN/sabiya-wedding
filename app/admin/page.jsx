@@ -24,7 +24,7 @@ export default function AdminDashboard() {
       if (error) throw error;
       setBookings(data || []);
     } catch (err) {
-      console.error('Error fetching bookings:', err);
+      console.warn('Error fetching bookings:', err);
       // Fallback dummy data if Supabase isn't configured
       setBookings([
         { id: 1, booking_date: '2026-08-15', client_name: 'Anisa & Budi', status: 'confirmed' },
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
       setClientName('');
       fetchBookings();
     } catch (err) {
-      console.error('Error adding booking:', err);
+      console.warn('Error adding booking:', err);
       alert('Gagal menambahkan jadwal. Pastikan Supabase sudah terkonfigurasi dengan benar.');
     }
   };
@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       if (error) throw error;
       fetchBookings();
     } catch (err) {
-      console.error('Error deleting booking:', err);
+      console.warn('Error deleting booking:', err);
       alert('Gagal menghapus jadwal.');
     }
   };

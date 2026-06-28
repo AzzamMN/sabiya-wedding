@@ -30,7 +30,7 @@ const blogPosts = [
 
 export default function BlogPage() {
   return (
-    <div className={styles.blogPage}>
+    <section className={styles.blogPage} id="blog">
       <div className="container">
         <header className={styles.header}>
           <h1 className="section-title text-gold text-center">Blog & Inspirasi</h1>
@@ -53,6 +53,6 @@ export default function BlogPage() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,10 @@
 import Hero from '../components/Hero';
 import ServicePreview from '../components/ServicePreview';
 import Testimonial from '../components/Testimonial';
+import LayananPage from './layanan/page';
+import PortfolioPage from './portfolio/page';
+import TentangKami from './tentang/page';
+import BlogPage from './blog/page';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -11,9 +15,20 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className={styles.main}>
-      <Hero />
-      <ServicePreview />
-      <Testimonial />
+      <div id="beranda">
+        <Hero />
+      </div>
+      <div id="layanan">
+        <LayananPage />
+      </div>
+      <div id="portfolio">
+        <PortfolioPage />
+      </div>
+      <div id="tentang">
+        <TentangKami />
+      </div>
+      {/* BlogPage already has id="blog" */}
+      <BlogPage />
     </main>
   );
 }

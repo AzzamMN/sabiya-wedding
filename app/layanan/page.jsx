@@ -1,10 +1,5 @@
 import styles from './layanan.module.css';
 
-export const metadata = {
-  title: 'Layanan & Harga - Sabiya Wedding',
-  description: 'Pilihan layanan dan harga paket pernikahan Sabiya Wedding.',
-};
-
 export default function LayananPage() {
   const services = [
     {
@@ -47,7 +42,7 @@ export default function LayananPage() {
   ];
 
   return (
-    <main className={styles.page}>
+    <section className={styles.page}>
       <div className="container">
         <div className={`${styles.header} reveal`}>
           <h1 className="section-title text-gold">Layanan & Harga</h1>
@@ -93,6 +88,6 @@ export default function LayananPage() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

@@ -26,7 +26,7 @@ export default function CekTanggal() {
 
       if (error) {
         // If Supabase isn't configured yet, just simulate an API call
-        console.error('Supabase error:', error);
+        console.warn('Supabase not configured, using fallback:', error);
         await simulateCheck();
         return;
       }

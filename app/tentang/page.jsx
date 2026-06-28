@@ -1,14 +1,9 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 
-export const metadata = {
-  title: 'Tentang Kami - Sabiya Wedding',
-  description: 'Kisah, filosofi, dan tim di balik karya indah Sabiya Wedding.',
-};
-
 export default function TentangKami() {
   return (
-    <main>
+    <section>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <Image
@@ -115,6 +110,6 @@ export default function TentangKami() {
           </div>
         </div>
       </section>
-    </main>
+    </section>
   );
 }

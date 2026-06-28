@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -18,18 +19,18 @@ export default function Footer() {
         <div className="footer-links">
           <h3>Layanan</h3>
           <ul>
-            <li><Link href="/layanan#dekorasi">Dekorasi Pernikahan</Link></li>
-            <li><Link href="/layanan#mua">Make Up Artist (MUA)</Link></li>
-            <li><Link href="/layanan#paket">Paket All-in</Link></li>
+            <li><Link href="/#layanan">Dekorasi Pernikahan</Link></li>
+            <li><Link href="/#layanan">Make Up Artist (MUA)</Link></li>
+            <li><Link href="/#layanan">Paket All-in</Link></li>
           </ul>
         </div>
 
         <div className="footer-links">
           <h3>Perusahaan</h3>
           <ul>
-            <li><Link href="/tentang">Tentang Kami</Link></li>
-            <li><Link href="/portfolio">Portfolio</Link></li>
-            <li><Link href="/blog">Blog & Inspirasi</Link></li>
+            <li><Link href="/#tentang">Tentang Kami</Link></li>
+            <li><Link href="/#portfolio">Portfolio</Link></li>
+            <li><Link href="/#blog">Blog & Inspirasi</Link></li>
             <li><Link href="/kontak">Hubungi Kami</Link></li>
           </ul>
         </div>
