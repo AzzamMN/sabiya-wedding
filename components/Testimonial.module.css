@@ -1,0 +1,111 @@
+.testimonialSection {
+  padding: var(--space-16) 0;
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonialSection::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.reviewCard {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6) var(--space-6);
+  position: relative;
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  background: var(--glass-bg);
+  border-color: var(--border-light);
+}
+
+.quoteIcon {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: var(--color-gold);
+  opacity: 0.15;
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-5);
+  line-height: 1;
+  user-select: none;
+}
+
+.stars {
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-4);
+  letter-spacing: 2px;
+}
+
+.text {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding-top: var(--space-4);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-blush-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-charcoal-dark);
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px rgba(255, 182, 193, 0.4);
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.clientInfo h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.clientInfo span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
