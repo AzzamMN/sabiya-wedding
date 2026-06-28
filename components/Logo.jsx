@@ -7,10 +7,11 @@ export default function Logo({ variant = 'light', className = '' }) {
   return (
     <svg 
       className={className} 
-      viewBox="10 5 150 45" 
+      viewBox="10 5 150 45"
+      width="150"
+      height="45"
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: '100%', width: 'auto' }}
     >
       {/* Decorative Floral / Leaf Element */}
       <path d="M26 15C32 10 38 18 38 18C38 18 32 23 26 15Z" fill={goldColor} opacity="0.8"/>

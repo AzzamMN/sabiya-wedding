@@ -89,6 +89,12 @@ export default function Header() {
           height: 45px;
         }
 
+        :global(.header-logo) {
+          height: 100%;
+          width: auto;
+          display: block;
+        }
+
         .main-nav {
           display: flex;
           align-items: center;

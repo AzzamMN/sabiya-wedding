@@ -70,6 +70,12 @@ export default function Footer() {
           height: 55px;
         }
 
+        :global(.footer-logo) {
+          height: 100%;
+          width: auto;
+          display: block;
+        }
+
         .footer-desc {
           color: rgba(255, 255, 255, 0.8);
           max-width: 300px;
