@@ -1,7 +1,11 @@
+'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from './portfolio.module.css';
 
 export default function PortfolioPage() {
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const portfolioItems = [
     {
       id: 1,
@@ -65,7 +69,12 @@ export default function PortfolioPage() {
 
         <div className={styles.galleryGrid}>
           {portfolioItems.map((item) => (
-            <div key={item.id} className={`${styles.galleryItem} reveal`}>
+            <div 
+              key={item.id} 
+              className={`${styles.galleryItem} reveal`}
+              onClick={() => setSelectedItem(item)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className={styles.imageWrapper}>
                 <Image
                   src={item.imageUrl}
@@ -83,6 +92,31 @@ export default function PortfolioPage() {
           ))}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedItem && (
+        <div className={styles.modal} onClick={() => setSelectedItem(null)}>
+          <button className={styles.closeButton} onClick={() => setSelectedItem(null)}>
+            &times;
+          </button>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalImageWrapper}>
+              <Image
+                src={selectedItem.imageUrl}
+                alt={selectedItem.title}
+                fill
+                className={styles.modalImage}
+                sizes="100vw"
+                quality={100}
+              />
+            </div>
+            <div className={styles.modalInfo}>
+              <h3>{selectedItem.title}</h3>
+              <p>{selectedItem.category}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

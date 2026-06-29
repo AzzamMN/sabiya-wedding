@@ -111,3 +111,91 @@
 .galleryItem:hover .overlayCategory {
   transform: translateY(0);
 }
+
+/* Modal Lightbox Styles */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-4);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2010;
+  transition: transform var(--transition-fast);
+}
+
+.closeButton:hover {
+  transform: scale(1.1);
+  color: var(--color-gold);
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modalImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background-color: #000;
+}
+
+.modalImage {
+  object-fit: contain;
+}
+
+.modalInfo {
+  padding: var(--space-6);
+  text-align: center;
+  background-color: var(--bg-primary);
+}
+
+.modalInfo h3 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.modalInfo p {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.875rem;
+}
