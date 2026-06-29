@@ -65,7 +65,7 @@ export default function CekTanggal() {
           })
         });
         resolve();
-      }, 1500);
+      }, 500); // Dipercepat menjadi 0.5 detik
     });
   };
 
