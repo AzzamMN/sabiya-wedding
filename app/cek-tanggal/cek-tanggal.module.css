@@ -160,7 +160,7 @@
 }
 
 /* Global Overrides for react-datepicker */
-:global(.react-datepicker) {
+.datePickerContainer :global(.react-datepicker) {
   font-family: var(--font-sans);
   border: none !important;
   border-radius: var(--radius-lg) !important;
@@ -170,13 +170,13 @@
   backdrop-filter: blur(10px);
 }
 
-:global(.react-datepicker__header) {
+.datePickerContainer :global(.react-datepicker__header) {
   background-color: transparent !important;
   border-bottom: 1px solid var(--border-light) !important;
   padding-bottom: var(--space-3) !important;
 }
 
-:global(.react-datepicker__current-month) {
+.datePickerContainer :global(.react-datepicker__current-month) {
   font-family: var(--font-heading);
   color: var(--color-gold) !important;
   font-size: 1.25rem !important;
@@ -184,7 +184,7 @@
   margin-bottom: var(--space-2);
 }
 
-:global(.react-datepicker__day-name) {
+.datePickerContainer :global(.react-datepicker__day-name) {
   color: var(--text-secondary) !important;
   font-weight: 500;
   width: 2.2rem !important;
@@ -192,7 +192,7 @@
   margin: 0.2rem !important;
 }
 
-:global(.react-datepicker__day) {
+.datePickerContainer :global(.react-datepicker__day) {
   color: var(--text-primary) !important;
   width: 2.2rem !important;
   line-height: 2.2rem !important;
@@ -201,31 +201,31 @@
   transition: all var(--transition-fast) !important;
 }
 
-:global(.react-datepicker__day:hover) {
+.datePickerContainer :global(.react-datepicker__day:hover) {
   background-color: rgba(212, 175, 55, 0.1) !important;
   color: var(--color-gold) !important;
 }
 
-:global(.react-datepicker__day--selected),
-:global(.react-datepicker__day--keyboard-selected) {
+.datePickerContainer :global(.react-datepicker__day--selected),
+.datePickerContainer :global(.react-datepicker__day--keyboard-selected) {
   background-color: var(--color-gold) !important;
   color: white !important;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
 }
 
-:global(.react-datepicker__day--disabled) {
+.datePickerContainer :global(.react-datepicker__day--disabled) {
   color: #ccc !important;
   background-color: transparent !important;
   cursor: not-allowed;
 }
 
-:global(.react-datepicker__navigation-icon::before) {
+.datePickerContainer :global(.react-datepicker__navigation-icon::before) {
   border-color: var(--color-gold) !important;
   transition: all var(--transition-fast);
 }
 
-:global(.react-datepicker__navigation:hover .react-datepicker__navigation-icon::before) {
+.datePickerContainer :global(.react-datepicker__navigation:hover .react-datepicker__navigation-icon::before) {
   border-color: var(--color-gold-dark) !important;
   border-width: 3px;
 }
