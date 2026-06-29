@@ -39,7 +39,7 @@ export default function Header() {
     <header className={`header ${useTransparentStyle ? 'header-top' : 'header-scrolled glass-panel'}`}>
       <div className="container header-container">
         <Link href="/" className="logo-link">
-          <Logo variant={useTransparentStyle ? 'light' : 'dark'} height="45px" />
+          <Logo variant={useTransparentStyle ? 'dark' : 'light'} height="45px" />
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''} ${useTransparentStyle ? 'nav-light' : 'nav-dark'}`}>
