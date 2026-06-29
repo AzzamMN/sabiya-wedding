@@ -32,14 +32,17 @@ export default function Header() {
     }
   };
 
+  const isHomePage = pathname === '/';
+  const useTransparentStyle = isHomePage && !isScrolled;
+
   return (
-    <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : 'header-top'}`}>
+    <header className={`header ${useTransparentStyle ? 'header-top' : 'header-scrolled glass-panel'}`}>
       <div className="container header-container">
         <Link href="/" className="logo-link">
-          <Logo variant={isScrolled ? 'light' : 'dark'} height="45px" />
+          <Logo variant={useTransparentStyle ? 'light' : 'dark'} height="45px" />
         </Link>
         
-        <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''} ${isScrolled ? 'nav-dark' : 'nav-light'}`}>
+        <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''} ${useTransparentStyle ? 'nav-light' : 'nav-dark'}`}>
           <Link href="/#beranda" className="nav-link" onClick={(e) => handleNavClick(e, '#beranda')}>Beranda</Link>
           <Link href="/#layanan" className="nav-link" onClick={(e) => handleNavClick(e, '#layanan')}>Layanan & Harga</Link>
           <Link href="/#portfolio" className="nav-link" onClick={(e) => handleNavClick(e, '#portfolio')}>Portfolio</Link>
@@ -51,7 +54,7 @@ export default function Header() {
         </nav>
 
         <button 
-          className={`mobile-menu-btn ${isScrolled || isMobileMenuOpen ? 'btn-dark' : 'btn-light'}`} 
+          className={`mobile-menu-btn ${!useTransparentStyle || isMobileMenuOpen ? 'btn-dark' : 'btn-light'}`} 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
