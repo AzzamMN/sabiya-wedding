@@ -103,6 +103,9 @@ export default function Header() {
 
         .main-nav a:not(.btn) {
           font-weight: 500;
+          color: ${isScrolled ? 'var(--text-primary)' : 'rgba(255, 255, 255, 0.9)'};
+          text-shadow: ${isScrolled ? 'none' : '0 1px 2px rgba(0,0,0,0.5)'};
+          transition: color var(--transition-fast);
         }
 
         .main-nav a:not(.btn):hover {
@@ -114,6 +117,11 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
+          .main-nav a:not(.btn) {
+            color: var(--text-primary) !important;
+            text-shadow: none !important;
+          }
+
           .mobile-menu-btn {
             display: block;
             width: 30px;
@@ -126,7 +134,7 @@ export default function Header() {
             display: block;
             width: 100%;
             height: 2px;
-            background-color: var(--text-primary);
+            background-color: ${isScrolled || isMobileMenuOpen ? 'var(--text-primary)' : 'white'};
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -138,7 +146,7 @@ export default function Header() {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: var(--text-primary);
+            background-color: ${isScrolled || isMobileMenuOpen ? 'var(--text-primary)' : 'white'};
             transition: all var(--transition-fast);
           }
 
