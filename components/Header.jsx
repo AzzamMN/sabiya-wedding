@@ -40,11 +40,11 @@ export default function Header() {
         </Link>
         
         <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''} ${isScrolled ? 'nav-dark' : 'nav-light'}`}>
-          <Link href="/#beranda" onClick={(e) => handleNavClick(e, '#beranda')}>Beranda</Link>
-          <Link href="/#layanan" onClick={(e) => handleNavClick(e, '#layanan')}>Layanan & Harga</Link>
-          <Link href="/#portfolio" onClick={(e) => handleNavClick(e, '#portfolio')}>Portfolio</Link>
-          <Link href="/#tentang" onClick={(e) => handleNavClick(e, '#tentang')}>Tentang Kami</Link>
-          <Link href="/#blog" onClick={(e) => handleNavClick(e, '#blog')}>Blog</Link>
+          <Link href="/#beranda" className="nav-link" onClick={(e) => handleNavClick(e, '#beranda')}>Beranda</Link>
+          <Link href="/#layanan" className="nav-link" onClick={(e) => handleNavClick(e, '#layanan')}>Layanan & Harga</Link>
+          <Link href="/#portfolio" className="nav-link" onClick={(e) => handleNavClick(e, '#portfolio')}>Portfolio</Link>
+          <Link href="/#tentang" className="nav-link" onClick={(e) => handleNavClick(e, '#tentang')}>Tentang Kami</Link>
+          <Link href="/#blog" className="nav-link" onClick={(e) => handleNavClick(e, '#blog')}>Blog</Link>
           <Link href="/cek-tanggal" className="btn btn-primary nav-btn" onClick={() => setIsMobileMenuOpen(false)}>
             Cek Tanggal
           </Link>
@@ -101,21 +101,22 @@ export default function Header() {
           gap: var(--space-5);
         }
 
-        .main-nav.nav-light a:not(.btn) {
+        .nav-link {
           font-weight: 500;
-          transition: all var(--transition-fast);
+          transition: color var(--transition-fast), text-shadow var(--transition-fast);
+        }
+
+        .main-nav.nav-light .nav-link {
           color: rgba(255, 255, 255, 0.95);
           text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        .main-nav.nav-dark a:not(.btn) {
-          font-weight: 500;
-          transition: all var(--transition-fast);
+        .main-nav.nav-dark .nav-link {
           color: var(--text-primary);
           text-shadow: none;
         }
 
-        .main-nav a:not(.btn):hover {
+        .nav-link:hover {
           color: var(--color-gold) !important;
         }
 
@@ -124,8 +125,8 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
-          .main-nav.nav-light a:not(.btn),
-          .main-nav.nav-dark a:not(.btn) {
+          .main-nav.nav-light .nav-link,
+          .main-nav.nav-dark .nav-link {
             color: var(--text-primary) !important;
             text-shadow: none !important;
           }
