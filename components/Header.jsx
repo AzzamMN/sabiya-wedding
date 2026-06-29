@@ -33,7 +33,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : ''}`}>
+    <header className={`header ${isScrolled ? 'header-scrolled glass-panel' : 'header-top'}`}>
       <div className="container header-container">
         <Link href="/" className="logo-link">
           <Logo variant={isScrolled ? 'light' : 'dark'} height="45px" />
@@ -103,9 +103,17 @@ export default function Header() {
 
         .main-nav a:not(.btn) {
           font-weight: 500;
-          color: ${isScrolled ? 'var(--text-primary)' : 'rgba(255, 255, 255, 0.9)'};
-          text-shadow: ${isScrolled ? 'none' : '0 1px 2px rgba(0,0,0,0.5)'};
-          transition: color var(--transition-fast);
+          transition: all var(--transition-fast);
+        }
+
+        .header-top .main-nav a:not(.btn) {
+          color: rgba(255, 255, 255, 0.95);
+          text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .header-scrolled .main-nav a:not(.btn) {
+          color: var(--text-primary);
+          text-shadow: none;
         }
 
         .main-nav a:not(.btn):hover {
@@ -117,7 +125,8 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
-          .main-nav a:not(.btn) {
+          .header-top .main-nav a:not(.btn),
+          .header-scrolled .main-nav a:not(.btn) {
             color: var(--text-primary) !important;
             text-shadow: none !important;
           }
@@ -134,11 +143,20 @@ export default function Header() {
             display: block;
             width: 100%;
             height: 2px;
-            background-color: ${isScrolled || isMobileMenuOpen ? 'var(--text-primary)' : 'white'};
+            background-color: var(--text-primary);
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             transition: all var(--transition-fast);
+          }
+
+          .header-top .hamburger {
+            background-color: white;
+          }
+
+          .header-scrolled .hamburger,
+          .open .hamburger {
+            background-color: var(--text-primary);
           }
 
           .hamburger::before, .hamburger::after {
@@ -146,8 +164,20 @@ export default function Header() {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: ${isScrolled || isMobileMenuOpen ? 'var(--text-primary)' : 'white'};
+            background-color: var(--text-primary);
             transition: all var(--transition-fast);
+          }
+
+          .header-top .hamburger::before, 
+          .header-top .hamburger::after {
+            background-color: white;
+          }
+
+          .header-scrolled .hamburger::before,
+          .header-scrolled .hamburger::after,
+          .open .hamburger::before,
+          .open .hamburger::after {
+            background-color: var(--text-primary);
           }
 
           .hamburger::before { top: -8px; }
