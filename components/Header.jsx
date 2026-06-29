@@ -39,7 +39,7 @@ export default function Header() {
           <Logo variant={isScrolled ? 'light' : 'dark'} height="45px" />
         </Link>
         
-        <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+        <nav className={`main-nav ${isMobileMenuOpen ? 'open' : ''} ${isScrolled ? 'nav-dark' : 'nav-light'}`}>
           <Link href="/#beranda" onClick={(e) => handleNavClick(e, '#beranda')}>Beranda</Link>
           <Link href="/#layanan" onClick={(e) => handleNavClick(e, '#layanan')}>Layanan & Harga</Link>
           <Link href="/#portfolio" onClick={(e) => handleNavClick(e, '#portfolio')}>Portfolio</Link>
@@ -51,7 +51,7 @@ export default function Header() {
         </nav>
 
         <button 
-          className="mobile-menu-btn" 
+          className={`mobile-menu-btn ${isScrolled || isMobileMenuOpen ? 'btn-dark' : 'btn-light'}`} 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -101,23 +101,22 @@ export default function Header() {
           gap: var(--space-5);
         }
 
-        .main-nav a:not(.btn) {
+        .main-nav.nav-light a:not(.btn) {
           font-weight: 500;
           transition: all var(--transition-fast);
-        }
-
-        .header-top .main-nav a:not(.btn) {
           color: rgba(255, 255, 255, 0.95);
           text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        .header-scrolled .main-nav a:not(.btn) {
+        .main-nav.nav-dark a:not(.btn) {
+          font-weight: 500;
+          transition: all var(--transition-fast);
           color: var(--text-primary);
           text-shadow: none;
         }
 
         .main-nav a:not(.btn):hover {
-          color: var(--color-gold);
+          color: var(--color-gold) !important;
         }
 
         .mobile-menu-btn {
@@ -125,8 +124,8 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
-          .header-top .main-nav a:not(.btn),
-          .header-scrolled .main-nav a:not(.btn) {
+          .main-nav.nav-light a:not(.btn),
+          .main-nav.nav-dark a:not(.btn) {
             color: var(--text-primary) !important;
             text-shadow: none !important;
           }
@@ -143,20 +142,10 @@ export default function Header() {
             display: block;
             width: 100%;
             height: 2px;
-            background-color: var(--text-primary);
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             transition: all var(--transition-fast);
-          }
-
-          .header-top .hamburger {
-            background-color: white;
-          }
-
-          .header-scrolled .hamburger,
-          .open .hamburger {
-            background-color: var(--text-primary);
           }
 
           .hamburger::before, .hamburger::after {
@@ -164,19 +153,18 @@ export default function Header() {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: var(--text-primary);
             transition: all var(--transition-fast);
           }
 
-          .header-top .hamburger::before, 
-          .header-top .hamburger::after {
+          .btn-light .hamburger,
+          .btn-light .hamburger::before,
+          .btn-light .hamburger::after {
             background-color: white;
           }
 
-          .header-scrolled .hamburger::before,
-          .header-scrolled .hamburger::after,
-          .open .hamburger::before,
-          .open .hamburger::after {
+          .btn-dark .hamburger,
+          .btn-dark .hamburger::before,
+          .btn-dark .hamburger::after {
             background-color: var(--text-primary);
           }
 
