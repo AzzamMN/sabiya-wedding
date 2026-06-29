@@ -80,9 +80,15 @@ export default function LayananPage() {
               </ul>
               
               <div className={styles.cardFooter}>
-                <button className={`btn ${service.popular ? 'btn-primary' : 'btn-outline'}`} style={{ width: '100%' }}>
+                <a 
+                  href={`https://wa.me/6281234567890?text=Halo%20Sabiya%20Wedding,%20saya%20tertarik%20dengan%20paket%20${encodeURIComponent(service.title)}.`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`btn ${service.popular ? 'btn-primary' : 'btn-outline'}`} 
+                  style={{ width: '100%', display: 'inline-block' }}
+                >
                   Konsultasi Sekarang
-                </button>
+                </a>
               </div>
             </div>
           ))}
