@@ -101,22 +101,22 @@ export default function Header() {
           gap: var(--space-5);
         }
 
-        .nav-link {
+        :global(.nav-link) {
           font-weight: 500;
           transition: color var(--transition-fast), text-shadow var(--transition-fast);
         }
 
-        .main-nav.nav-light .nav-link {
+        .main-nav.nav-light :global(.nav-link) {
           color: rgba(255, 255, 255, 0.95);
           text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        .main-nav.nav-dark .nav-link {
+        .main-nav.nav-dark :global(.nav-link) {
           color: var(--text-primary);
           text-shadow: none;
         }
 
-        .nav-link:hover {
+        :global(.nav-link:hover) {
           color: var(--color-gold) !important;
         }
 
@@ -125,8 +125,8 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
-          .main-nav.nav-light .nav-link,
-          .main-nav.nav-dark .nav-link {
+          .main-nav.nav-light :global(.nav-link),
+          .main-nav.nav-dark :global(.nav-link) {
             color: var(--text-primary) !important;
             text-shadow: none !important;
           }
