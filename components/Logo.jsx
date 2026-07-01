@@ -46,7 +46,7 @@ export default function Logo({ variant = 'light', className = '', height = '45px
   return (
     <svg 
       className={className} 
-      viewBox="0 0 240 58"
+      viewBox="2 2 56 46"
       style={{ height, width: 'auto', display: 'block' }}
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
@@ -83,34 +83,6 @@ export default function Logo({ variant = 'light', className = '', height = '45px
       {/* Right Olive / Floral Leaf Wreath */}
       <path d="M49 43 C54 37 54 27 49 21" stroke={goldColor} strokeWidth="1.2" fill="none" strokeLinecap="round" />
       <path d="M52 37 C54.5 35 53.5 32.5 51 34 Z M54 31 C56.5 29 55.5 26.5 53 28 Z M53 25 C55 22.5 53 20.5 51 23 Z" fill={goldColor} />
-
-      {/* --- BRAND TEXT (Sabiya Wedding) --- */}
-      <text 
-        x="66" 
-        y="36" 
-        fontFamily="'Playfair Display', 'Times New Roman', 'Georgia', serif" 
-        fontSize="24" 
-        fontStyle="italic" 
-        fontWeight="600" 
-        fill={textColor} 
-        letterSpacing="1"
-      >
-        Sabiya Wedding
-      </text>
-      
-      {/* Subtitle / Tagline */}
-      <text 
-        x="68" 
-        y="48" 
-        fontFamily="'Arial', sans-serif" 
-        fontSize="7.5" 
-        fill={textColor} 
-        letterSpacing="4.5" 
-        opacity="0.8"
-        fontWeight="bold"
-      >
-        DECORATION &amp; MUA
-      </text>
     </svg>
   );
 }
