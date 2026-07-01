@@ -1,20 +1,23 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { client } from '@/sanity/client';
 
 export default function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
-  const phoneNumber = "6281234567890";
+  const [phoneNumber, setPhoneNumber] = useState("6281234567890");
   const message = encodeURIComponent("Halo Sabiya Wedding, saya ingin bertanya tentang paket pernikahan.");
   const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   useEffect(() => {
+    client.fetch('*[_type == "siteSettings"][0].whatsapp').then(num => {
+      if (num) setPhoneNumber(num);
+    }).catch(err => console.error("Error fetching WA:", err));
+
     const handleScroll = () => {
-      // Show button after scrolling down 300px
       setIsVisible(window.scrollY > 300);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);

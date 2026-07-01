@@ -1,10 +1,29 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './kontak.module.css';
 
 export default function KontakPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [settings, setSettings] = useState({
+    address: "Jl. Kenangan Indah No. 123\nKebayoran Baru, Jakarta Selatan\nDKI Jakarta 12190",
+    whatsapp: "6281234567890",
+    email: "hello@sabiyawedding.com"
+  });
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch('*[_type == "siteSettings"][0]{address, whatsapp, email}').then(data => {
+        if (data) {
+          setSettings({
+            address: data.address || "Jl. Kenangan Indah No. 123\nKebayoran Baru, Jakarta Selatan\nDKI Jakarta 12190",
+            whatsapp: data.whatsapp || "6281234567890",
+            email: data.email || "hello@sabiyawedding.com"
+          });
+        }
+      }).catch(err => console.error("Error fetching settings:", err));
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,22 +54,20 @@ export default function KontakPage() {
         <div className={`glass-panel ${styles.infoCard}`}>
           <div className={styles.infoItem}>
             <h3 className={styles.infoTitle}>Alamat Kantor</h3>
-            <p className={styles.infoText}>
-              Jl. Kenangan Indah No. 123<br />
-              Kebayoran Baru, Jakarta Selatan<br />
-              DKI Jakarta 12190
+            <p className={styles.infoText} style={{ whiteSpace: 'pre-line' }}>
+              {settings.address}
             </p>
           </div>
           <div className={styles.infoItem}>
             <h3 className={styles.infoTitle}>Telepon / WhatsApp</h3>
             <p className={styles.infoText}>
-              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="text-gold">+62 812 3456 7890</a>
+              <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-gold">+{settings.whatsapp}</a>
             </p>
           </div>
           <div className={styles.infoItem}>
             <h3 className={styles.infoTitle}>Email</h3>
             <p className={styles.infoText}>
-              <a href="mailto:hello@sabiyawedding.com" className="text-gold">hello@sabiyawedding.com</a>
+              <a href={`mailto:${settings.email}`} className="text-gold">{settings.email}</a>
             </p>
           </div>
           <div className={styles.infoItem}>

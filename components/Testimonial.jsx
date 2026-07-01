@@ -1,6 +1,8 @@
+'use client';
+import { useState, useEffect } from 'react';
 import styles from './Testimonial.module.css';
 
-const testimonials = [
+const defaultTestimonials = [
   {
     name: 'Amanda & Reza',
     date: 'Januari 2026',
@@ -22,6 +24,24 @@ const testimonials = [
 ];
 
 export default function Testimonial() {
+  const [testimonials, setTestimonials] = useState(defaultTestimonials);
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch('*[_type == "testimonial"]{name, role, comment, rating}').then(data => {
+        if (data && data.length > 0) {
+          const formatted = data.map(item => ({
+            name: item.name || 'Klien Sabiya',
+            date: item.role || 'Pengantin Sabiya',
+            text: item.comment || '',
+            initials: (item.name || 'KS').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+          }));
+          setTestimonials(formatted);
+        }
+      }).catch(err => console.error("Error fetching testimonials:", err));
+    });
+  }, []);
+
   return (
     <section id="testimoni" className={styles.testimonialSection}>
       <div className="container">

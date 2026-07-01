@@ -5,6 +5,7 @@ import LayananPage from './layanan/page';
 import PortfolioPage from './portfolio/page';
 import TentangKami from './tentang/page';
 import BlogPage from './blog/page';
+import FAQ from '../components/FAQ';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -27,6 +28,7 @@ export default function HomePage() {
       <div id="tentang">
         <TentangKami />
       </div>
+      <FAQ />
       {/* BlogPage already has id="blog" */}
       <BlogPage />
     </main>

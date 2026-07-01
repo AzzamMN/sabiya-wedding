@@ -11,7 +11,26 @@ export default defineConfig({
   dataset,
   schema,
   plugins: [
-    structureTool(),
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Sabiya Wedding CMS')
+          .items([
+            S.listItem()
+              .title('⚙️ Pengaturan Web & Kontak')
+              .id('siteSettings')
+              .child(
+                S.document()
+                  .schemaType('siteSettings')
+                  .documentId('siteSettings')
+                  .title('Pengaturan Web & Kontak')
+              ),
+            S.divider(),
+            ...S.documentTypeListItems().filter(
+              (item) => item.getId() !== 'siteSettings'
+            ),
+          ]),
+    }),
     visionTool({ defaultApiVersion: apiVersion }),
   ],
   title: 'Sabiya Wedding Admin Studio',
