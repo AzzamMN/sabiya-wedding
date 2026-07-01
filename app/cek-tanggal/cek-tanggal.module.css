@@ -134,7 +134,7 @@
 .input {
   width: 100%;
   padding: var(--space-4);
-  text-align: center;
+  padding-left: calc(var(--space-4) + 35px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   font-family: var(--font-sans);
@@ -160,12 +160,6 @@
 }
 
 /* Global Overrides for react-datepicker */
-.datePickerContainer :global(.react-datepicker-wrapper),
-.datePickerContainer :global(.react-datepicker__input-container) {
-  display: block;
-  width: 100%;
-}
-
 .datePickerContainer :global(.react-datepicker) {
   font-family: var(--font-sans);
   border: none !important;
