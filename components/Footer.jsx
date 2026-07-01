@@ -1,9 +1,33 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [settings, setSettings] = useState({
+    title: 'Sabiya Wedding Decoration',
+    slogan: 'Mewujudkan hari bahagia Anda dengan sentuhan dekorasi premium dan riasan makeup elegan.',
+    address: 'Jl. Contoh Raya No. 123, Jakarta',
+    whatsapp: '6281234567890',
+    email: 'halo@sabiyawedding.com'
+  });
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch('*[_type == "siteSettings"][0]{title, slogan, address, whatsapp, email}').then(data => {
+        if (data) {
+          setSettings({
+            title: data.title || 'Sabiya Wedding Decoration',
+            slogan: data.slogan || 'Mewujudkan hari bahagia Anda dengan sentuhan dekorasi premium dan riasan makeup elegan.',
+            address: data.address || 'Jl. Contoh Raya No. 123, Jakarta',
+            whatsapp: data.whatsapp || '6281234567890',
+            email: data.email || 'halo@sabiyawedding.com'
+          });
+        }
+      }).catch(err => console.error("Error fetching footer settings:", err));
+    });
+  }, []);
 
   return (
     <footer className="footer">
@@ -13,7 +37,7 @@ export default function Footer() {
             <Logo variant="dark" height="55px" />
           </Link>
           <p className="footer-desc">
-            Mewujudkan hari bahagia Anda dengan sentuhan dekorasi premium dan riasan makeup elegan.
+            {settings.slogan}
           </p>
         </div>
 
@@ -38,14 +62,14 @@ export default function Footer() {
 
         <div className="footer-contact">
           <h3>Kontak</h3>
-          <p>📍 Jl. Contoh Raya No. 123, Jakarta</p>
-          <p>📞 +62 812 3456 7890</p>
-          <p>✉️ halo@sabiyawedding.com</p>
+          <p style={{ whiteSpace: 'pre-line' }}>📍 {settings.address}</p>
+          <p>📞 +{settings.whatsapp}</p>
+          <p>✉️ {settings.email}</p>
         </div>
       </div>
       
       <div className="footer-bottom container">
-        <p>&copy; {currentYear} Sabiya Wedding Decoration. All rights reserved.</p>
+        <p>&copy; {currentYear} {settings.title}. All rights reserved.</p>
       </div>
 
       <style jsx>{`
