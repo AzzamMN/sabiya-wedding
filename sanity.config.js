@@ -25,9 +25,18 @@ export default defineConfig({
                   .documentId('siteSettings')
                   .title('Pengaturan Web & Kontak')
               ),
+            S.listItem()
+              .title('📖 Halaman Tentang & Filosofi')
+              .id('about')
+              .child(
+                S.document()
+                  .schemaType('about')
+                  .documentId('about')
+                  .title('Halaman Tentang Kami')
+              ),
             S.divider(),
             ...S.documentTypeListItems().filter(
-              (item) => item.getId() !== 'siteSettings'
+              (item) => !['siteSettings', 'about'].includes(item.getId())
             ),
           ]),
     }),

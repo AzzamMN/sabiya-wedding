@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,6 +11,15 @@ export default function CekTanggal() {
   const [date, setDate] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [whatsapp, setWhatsapp] = useState('6281234567890');
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch('*[_type == "siteSettings"][0].whatsapp').then(wa => {
+        if (wa) setWhatsapp(wa);
+      }).catch(err => console.error("Error fetching WA for Cek Tanggal:", err));
+    });
+  }, []);
 
   const checkAvailability = async (e) => {
     e.preventDefault();
@@ -71,7 +80,7 @@ export default function CekTanggal() {
 
   const getWaLink = () => {
     const message = encodeURIComponent(`Halo, saya tertarik untuk booking Sabiya Wedding pada tanggal ${result?.date}. Mohon info paketnya.`);
-    return `https://wa.me/6281234567890?text=${message}`;
+    return `https://wa.me/${whatsapp}?text=${message}`;
   };
 
   // Custom Input for DatePicker to keep elegant styling

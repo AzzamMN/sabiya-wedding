@@ -1,7 +1,9 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './blog.module.css';
 
-const blogPosts = [
+const defaultPosts = [
   {
     id: 1,
     slug: 'tren-warna-dekorasi-pernikahan-2026',
@@ -29,6 +31,33 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState(defaultPosts);
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch(`*[_type == "blog"] | order(publishedAt desc, _createdAt desc) {
+        _id,
+        title,
+        "slug": slug.current,
+        excerpt,
+        publishedAt,
+        "imageUrl": mainImage.asset->url
+      }`).then(data => {
+        if (data && data.length > 0) {
+          const formatted = data.map((item, idx) => ({
+            id: item._id || idx,
+            slug: item.slug || '',
+            title: item.title || 'Artikel Tanpa Judul',
+            excerpt: item.excerpt || 'Klik untuk membaca artikel lengkap...',
+            date: item.publishedAt ? new Date(item.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Baru',
+            image: item.imageUrl || 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800'
+          }));
+          setPosts(formatted);
+        }
+      }).catch(err => console.error("Error fetching blog posts:", err));
+    });
+  }, []);
+
   return (
     <section className={styles.blogPage} id="blog">
       <div className="container">
@@ -38,7 +67,7 @@ export default function BlogPage() {
         </header>
 
         <div className={styles.grid}>
-          {blogPosts.map(post => (
+          {posts.map(post => (
             <Link href={`/blog/${post.slug}`} key={post.id} className={styles.card}>
               <div className={styles.imageWrapper}>
                 <img src={post.image} alt={post.title} className={styles.image} />
