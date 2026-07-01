@@ -11,13 +11,15 @@
 }
 
 .galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 300px;
-  gap: var(--space-4);
+  column-count: 3;
+  column-gap: var(--space-6);
+  width: 100%;
 }
 
 .galleryItem {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: var(--space-6);
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -25,24 +27,18 @@
   transition: all var(--transition-normal);
   cursor: pointer;
   background-color: var(--bg-secondary);
+  break-inside: avoid;
 }
 
-/* Masonry approximation with Grid */
-.galleryItem:nth-child(4n + 1) {
-  grid-row: span 2;
-}
-.galleryItem:nth-child(5n + 3) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .galleryGrid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-count: 2;
   }
-  .galleryItem:nth-child(5n + 3) {
-    grid-column: span 1;
-    grid-row: span 1;
+}
+
+@media (max-width: 600px) {
+  .galleryGrid {
+    column-count: 1;
   }
 }
 
@@ -52,14 +48,15 @@
 }
 
 .imageWrapper {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
+  overflow: hidden;
 }
 
 .image {
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
   transition: transform var(--transition-slow);
 }
 
@@ -152,16 +149,18 @@
 
 .modalContent {
   position: relative;
-  width: 100%;
-  max-width: 900px;
+  width: fit-content;
+  max-width: 95vw;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   background: var(--bg-secondary);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: auto;
 }
 
 @keyframes slideUp {
@@ -172,12 +171,21 @@
 .modalImageWrapper {
   position: relative;
   width: 100%;
-  height: 60vh;
-  background-color: #000;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  overflow: hidden;
 }
 
 .modalImage {
+  max-height: 75vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
 .modalInfo {

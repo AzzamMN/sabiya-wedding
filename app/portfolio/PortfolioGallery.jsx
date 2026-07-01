@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
 import styles from './portfolio.module.css';
 
 export default function PortfolioGallery({ initialItems = [] }) {
@@ -97,12 +96,11 @@ export default function PortfolioGallery({ initialItems = [] }) {
               style={{ cursor: 'pointer' }}
             >
               <div className={styles.imageWrapper}>
-                <Image
+                <img
                   src={item.imageUrl}
                   alt={item.title || 'Portfolio Image'}
-                  fill
                   className={styles.image}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>
               <div className={styles.overlay}>
@@ -122,19 +120,29 @@ export default function PortfolioGallery({ initialItems = [] }) {
           </button>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <div className={styles.modalImageWrapper}>
-              <Image
+              <img
                 src={selectedItem.imageUrl}
                 alt={selectedItem.title || 'Portfolio Image'}
-                fill
                 className={styles.modalImage}
-                sizes="100vw"
-                quality={100}
+                style={{
+                  maxHeight: '75vh',
+                  maxWidth: '100%',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                  margin: '0 auto',
+                }}
               />
             </div>
             <div className={styles.modalInfo}>
               <h3>{selectedItem.title}</h3>
               <p>{selectedItem.category}</p>
-              {selectedItem.description && <p style={{ fontSize: '0.95rem', marginTop: '10px', color: '#eee' }}>{selectedItem.description}</p>}
+              {selectedItem.description && (
+                <p style={{ fontSize: '0.95rem', marginTop: '10px', color: '#eee', textTransform: 'none', letterSpacing: 'normal' }}>
+                  {selectedItem.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
