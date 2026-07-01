@@ -10,6 +10,15 @@ export default {
       initialValue: 'Sabiya Wedding Decoration',
     },
     {
+      name: 'logo',
+      title: 'Logo Website (Upload Gambar PNG / JPG)',
+      type: 'image',
+      description: 'Jika diisi, logo ini akan menggantikan tulisan/SVG standar di pojok kiri atas website.',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'slogan',
       title: 'Slogan Utama',
       type: 'string',

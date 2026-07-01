@@ -1,8 +1,34 @@
+'use client';
+import { useState, useEffect } from 'react';
+
 export default function Logo({ variant = 'light', className = '', height = '45px' }) {
-  // light variant: for light backgrounds (uses dark text)
-  // dark variant: for dark backgrounds (uses white text)
+  const [logoUrl, setLogoUrl] = useState(null);
+
+  useEffect(() => {
+    import('@/sanity/client').then(({ client }) => {
+      client.fetch('*[_type == "siteSettings"][0].logo').then(logo => {
+        if (logo) {
+          import('@/sanity/image').then(({ urlFor }) => {
+            setLogoUrl(urlFor(logo).height(120).url());
+          });
+        }
+      }).catch(err => console.error("Error fetching logo:", err));
+    });
+  }, []);
+
   const textColor = variant === 'light' ? '#1c1d21' : '#ffffff';
   const goldColor = '#d4af37';
+
+  if (logoUrl) {
+    return (
+      <img 
+        src={logoUrl} 
+        alt="Sabiya Wedding Logo" 
+        className={className}
+        style={{ height, width: 'auto', objectFit: 'contain', display: 'block' }}
+      />
+    );
+  }
 
   return (
     <svg 
